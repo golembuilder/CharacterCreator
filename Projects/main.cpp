@@ -26,18 +26,20 @@ int main()
     mUnit->getAppearanceSetManager().printSet("default");
 
     cout << "------------------" << endl;
-    //cout << mUnit->getAppearanceSetManager().getSet("blah").getSetName() << endl;
-    //mUnit->getAppearanceSetManager().getSet("blah").printSet();
 
     AppearanceSet * mSet = new AppearanceSet();
-    mSet->setName("set2");
+    mSet->setName("Set2");
     mSet->setCurrent(false);
     mSet->addToSet("face", "scar01.mesh");
 
     mUnit->getAppearanceSetManager().addAppearanceSet(*mSet);
+    mUnit->getAppearanceSetManager().printSetList();
     mUnit->getAppearanceSetManager().printSet("set2");
-   // mUnit->getAppearanceSetManager().printAllSets();
+    mUnit->getAppearanceSetManager().printAllSets();
 
+    //Clean Up Object Creation
+    delete(mSet);
+    mSet = 0;
     delete(mUnit);
     mUnit = 0;
 

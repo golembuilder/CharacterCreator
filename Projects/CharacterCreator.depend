@@ -7,10 +7,11 @@
 	"AppearanceSetManager.h"
 	<iostream>
 
-1363397714 source:e:\ogre_stuff\project\charactercreator\main.cpp
+1363748510 source:e:\ogre_stuff\project\charactercreator\main.cpp
 	<iostream>
 	"Unit.h"
 	"PlayerCharacter.h"
+	"AppearanceSet.h"
 
 1362710110 e:\ogre_stuff\project\charactercreator\playercharacter.h
 	"Unit.h"
@@ -20,14 +21,14 @@
 	"PlayerCharacter.h"
 	<iostream>
 
-1363397702 source:e:\ogre_stuff\project\charactercreator\appearancesetmanager.cpp
+1363748466 source:e:\ogre_stuff\project\charactercreator\appearancesetmanager.cpp
 	"AppearanceSetManager.h"
 
-1363397626 e:\ogre_stuff\project\charactercreator\appearancesetmanager.h
+1363748382 e:\ogre_stuff\project\charactercreator\appearancesetmanager.h
 	<vector>
 	"AppearanceSet.h"
 
-1363397368 e:\ogre_stuff\project\charactercreator\appearanceset.h
+1363748254 e:\ogre_stuff\project\charactercreator\appearanceset.h
 	<iostream>
 	<map>
 
@@ -66,7 +67,7 @@
 1363226498 source:f:\ogre_stuff\project\charactercreator\appearanceset.cpp
 	"AppearanceSet.h"
 
-1363397368 source:e:\ogre_stuff\project\charactercreator\appearanceset.cpp
+1363748676 source:e:\ogre_stuff\project\charactercreator\appearanceset.cpp
 	"AppearanceSet.h"
 
 1362710074 source:i:\ogre_stuff\project\charactercreator\playercharacter.cpp
@@ -81,11 +82,11 @@
 	"AppearanceSetManager.h"
 	<iostream>
 
-1363401810 i:\ogre_stuff\project\charactercreator\appearancesetmanager.h
+1363755668 i:\ogre_stuff\project\charactercreator\appearancesetmanager.h
 	<vector>
 	"AppearanceSet.h"
 
-1363400178 i:\ogre_stuff\project\charactercreator\appearanceset.h
+1363755400 i:\ogre_stuff\project\charactercreator\appearanceset.h
 	<iostream>
 	<map>
 
@@ -93,13 +94,13 @@
 	"Unit.h"
 	<iostream>
 
-1363403162 source:i:\ogre_stuff\project\charactercreator\appearanceset.cpp
+1363756330 source:i:\ogre_stuff\project\charactercreator\appearanceset.cpp
 	"AppearanceSet.h"
 
-1363401962 source:i:\ogre_stuff\project\charactercreator\appearancesetmanager.cpp
+1363756540 source:i:\ogre_stuff\project\charactercreator\appearancesetmanager.cpp
 	"AppearanceSetManager.h"
 
-1363402112 source:i:\ogre_stuff\project\charactercreator\main.cpp
+1363755668 source:i:\ogre_stuff\project\charactercreator\main.cpp
 	<iostream>
 	"Unit.h"
 	"PlayerCharacter.h"

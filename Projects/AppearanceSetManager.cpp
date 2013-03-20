@@ -13,9 +13,10 @@ AppearanceSetManager::~AppearanceSetManager()
     //dtor
 }
 
-void AppearanceSetManager::addAppearanceSet(AppearanceSet & newSet)
+void AppearanceSetManager::addAppearanceSet(AppearanceSet newSet)
 {
     mAppearanceSetList.push_back(newSet);
+    cout << "Added: "  << newSet.getSetName() << endl;
 }
 
 AppearanceSet AppearanceSetManager::createDefaultSet(void)
@@ -77,11 +78,8 @@ AppearanceSet & AppearanceSetManager::getSet(const string & setName)
     {
         if (mItr->getSetName() == setName)
         {
-            cout << "FOUND ------ " + mItr->getSetName() << endl; //Testing
             return  *mItr;
         }
-
-
     }
 }
 
@@ -94,10 +92,11 @@ void AppearanceSetManager::printSet(const string & setName)
 {
     mItr = mAppearanceSetList.begin();
     map<string, string>::iterator mapItr;
-    mapItr = mItr->getAppearanceMap().begin();
+
 
     for (mItr; mItr != mAppearanceSetList.end(); mItr++)
     {
+        mapItr = mItr->getAppearanceMap().begin();
         if(mItr->getSetName() == setName)
         {
             for (mapItr; mapItr != mItr->getAppearanceMap().end(); mapItr++)
@@ -110,12 +109,20 @@ void AppearanceSetManager::printAllSets(void)
 {
     mItr = mAppearanceSetList.begin();
     map<string, string>::iterator mapItr;
-    mapItr = mItr->getAppearanceMap().begin();
+
 
     for (mItr; mItr != mAppearanceSetList.end(); mItr++)
     {
+        mapItr = mItr->getAppearanceMap().begin();
         cout << "Set Name:" << mItr->getSetName() << endl;
             for (mapItr; mapItr != mItr->getAppearanceMap().end(); mapItr++)
                 cout << mapItr->first << ": " << mapItr->second << endl;
     }
+}
+
+void AppearanceSetManager::printSetList(void)
+{
+    mItr = mAppearanceSetList.begin();
+    for (mItr; mItr != mAppearanceSetList.end(); mItr++)
+        cout << mItr->getSetName() << endl;
 }

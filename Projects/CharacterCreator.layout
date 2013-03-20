@@ -2,16 +2,16 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="AppearanceSet.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="331" topLine="0" />
+		<Cursor position="725" topLine="13" />
 	</File>
 	<File name="AppearanceSet.h" open="1" top="0" tabpos="4">
-		<Cursor position="614" topLine="0" />
+		<Cursor position="719" topLine="0" />
 	</File>
 	<File name="AppearanceSetManager.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="3950" topLine="66" />
+		<Cursor position="4012" topLine="0" />
 	</File>
 	<File name="AppearanceSetManager.h" open="1" top="0" tabpos="2">
-		<Cursor position="313" topLine="0" />
+		<Cursor position="311" topLine="0" />
 	</File>
 	<File name="PlayerCharacter.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="314" topLine="0" />
@@ -19,13 +19,13 @@
 	<File name="PlayerCharacter.h" open="0" top="0" tabpos="4">
 		<Cursor position="168" topLine="0" />
 	</File>
-	<File name="Unit.cpp" open="0" top="0" tabpos="2">
+	<File name="Unit.cpp" open="1" top="0" tabpos="7">
 		<Cursor position="658" topLine="0" />
 	</File>
-	<File name="Unit.h" open="0" top="0" tabpos="3">
+	<File name="Unit.h" open="1" top="0" tabpos="6">
 		<Cursor position="34" topLine="0" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1109" topLine="8" />
+		<Cursor position="1153" topLine="8" />
 	</File>
 </CodeBlocks_layout_file>

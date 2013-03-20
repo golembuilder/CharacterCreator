@@ -9,7 +9,7 @@ using namespace std;
 class AppearanceSet
 {
     public:
-        AppearanceSet();
+        AppearanceSet(string setName = "", bool currentFlag = false);
         virtual ~AppearanceSet();
 
         virtual void addToSet(const string & key, const string &  value);
@@ -22,10 +22,10 @@ class AppearanceSet
 
     protected:
     private:
-        bool isCurrent;
         string mSetName;
+        bool isCurrent;
         map<string, string> mAppearanceMap;
-        std::map<string, string>::iterator mItr;
+        map<string, string>::iterator mItr;
 };
 
 #endif // APPEARANCESET_H

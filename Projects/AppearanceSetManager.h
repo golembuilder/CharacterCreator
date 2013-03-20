@@ -12,10 +12,11 @@ class AppearanceSetManager
         AppearanceSetManager();
         virtual ~AppearanceSetManager();
 
-        virtual void addAppearanceSet(AppearanceSet & newSet);
+        virtual void addAppearanceSet(AppearanceSet newSet);
         virtual AppearanceSet createDefaultSet(void);
         virtual void printSet(const string & setName);
         virtual void printAllSets(void);
+        virtual void printSetList(void);
         //Setters
 
 
