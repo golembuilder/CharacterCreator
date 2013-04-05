@@ -1,0 +1,108 @@
+# depslib dependency file v1.0
+1363228092 source:e:\ogre_stuff\project\charactercreator\unit.cpp
+	"Unit.h"
+	<iostream>
+
+1363228144 e:\ogre_stuff\project\charactercreator\unit.h
+	"AppearanceSetManager.h"
+	<iostream>
+
+1363748510 source:e:\ogre_stuff\project\charactercreator\main.cpp
+	<iostream>
+	"Unit.h"
+	"PlayerCharacter.h"
+	"AppearanceSet.h"
+
+1362710110 e:\ogre_stuff\project\charactercreator\playercharacter.h
+	"Unit.h"
+	<iostream>
+
+1362710074 source:e:\ogre_stuff\project\charactercreator\playercharacter.cpp
+	"PlayerCharacter.h"
+	<iostream>
+
+1363748466 source:e:\ogre_stuff\project\charactercreator\appearancesetmanager.cpp
+	"AppearanceSetManager.h"
+
+1363748382 e:\ogre_stuff\project\charactercreator\appearancesetmanager.h
+	<vector>
+	"AppearanceSet.h"
+
+1363748254 e:\ogre_stuff\project\charactercreator\appearanceset.h
+	<iostream>
+	<map>
+
+1362710074 source:f:\ogre_stuff\project\charactercreator\playercharacter.cpp
+	"PlayerCharacter.h"
+	<iostream>
+
+1362710110 f:\ogre_stuff\project\charactercreator\playercharacter.h
+	"Unit.h"
+	<iostream>
+
+1363228144 f:\ogre_stuff\project\charactercreator\unit.h
+	"AppearanceSetManager.h"
+	<iostream>
+
+1363228092 source:f:\ogre_stuff\project\charactercreator\unit.cpp
+	"Unit.h"
+	<iostream>
+
+1363230764 source:f:\ogre_stuff\project\charactercreator\main.cpp
+	<iostream>
+	"Unit.h"
+	"PlayerCharacter.h"
+
+1363230136 source:f:\ogre_stuff\project\charactercreator\appearancesetmanager.cpp
+	"AppearanceSetManager.h"
+
+1363229748 f:\ogre_stuff\project\charactercreator\appearancesetmanager.h
+	<vector>
+	"AppearanceSet.h"
+
+1363226498 f:\ogre_stuff\project\charactercreator\appearanceset.h
+	<iostream>
+	<map>
+
+1363226498 source:f:\ogre_stuff\project\charactercreator\appearanceset.cpp
+	"AppearanceSet.h"
+
+1363748676 source:e:\ogre_stuff\project\charactercreator\appearanceset.cpp
+	"AppearanceSet.h"
+
+1362710074 source:i:\ogre_stuff\project\charactercreator\playercharacter.cpp
+	"PlayerCharacter.h"
+	<iostream>
+
+1362710110 i:\ogre_stuff\project\charactercreator\playercharacter.h
+	"Unit.h"
+	<iostream>
+
+1363228144 i:\ogre_stuff\project\charactercreator\unit.h
+	"AppearanceSetManager.h"
+	<iostream>
+
+1363755668 i:\ogre_stuff\project\charactercreator\appearancesetmanager.h
+	<vector>
+	"AppearanceSet.h"
+
+1363755400 i:\ogre_stuff\project\charactercreator\appearanceset.h
+	<iostream>
+	<map>
+
+1363228092 source:i:\ogre_stuff\project\charactercreator\unit.cpp
+	"Unit.h"
+	<iostream>
+
+1363756330 source:i:\ogre_stuff\project\charactercreator\appearanceset.cpp
+	"AppearanceSet.h"
+
+1363756540 source:i:\ogre_stuff\project\charactercreator\appearancesetmanager.cpp
+	"AppearanceSetManager.h"
+
+1363755668 source:i:\ogre_stuff\project\charactercreator\main.cpp
+	<iostream>
+	"Unit.h"
+	"PlayerCharacter.h"
+	"AppearanceSet.h"
+
