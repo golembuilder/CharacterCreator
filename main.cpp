@@ -40,9 +40,12 @@ int main()
     mUnit->getAppearanceSetManager().printAllSets();
     mUnit->getAppearanceSetManager().setCurrent("default");
     mUnit->getAppearanceSetManager().printAllSets();
-
-
-    //Clean Up Object Creation
+	
+	cout << "-------------------" << endl << endl;
+    cout << "printing off character info" << endl;
+	mUnit->printUnitInfo();
+	
+	//Clean Up Object Creation
     delete(mSet);
     mSet = 0;
     delete(mUnit);

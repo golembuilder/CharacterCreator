@@ -29,8 +29,8 @@ void AppearanceSetManager::createDefaultSet(void)
     mDefaultSet.addToSet("lEyeColor", "blue");
     mDefaultSet.addToSet("rEyeColor", "yellow");
 }
-/*
-void AppearanceSetManager::addSet(AppearanceSet newSet)
+
+void AppearanceSetManager::addSet(AppearanceSet & newSet)
 {
     try     //check to see if newSet is not contained in the set.
     {
@@ -110,10 +110,10 @@ void AppearanceSetManager::printSet(const string & setName)
 
     for (mItr; mItr != mSetList.end(); mItr++)
     {
-        mapItr = mItr->getAppearanceMap().begin();
+        mapItr = mItr->getSetMap().begin();
         if(mItr->getSetName() == setName)
         {
-            for (mapItr; mapItr != mItr->getAppearanceMap().end(); mapItr++)
+            for (mapItr; mapItr != mItr->getSetMap().end(); mapItr++)
                 cout << mapItr->first << ": " << mapItr->second << endl;
         }
     }
@@ -127,9 +127,9 @@ void AppearanceSetManager::printAllSets(void)
 
     for (mItr; mItr != mSetList.end(); mItr++)
     {
-        mapItr = mItr->getAppearanceMap().begin();
+        mapItr = mItr->getSetMap().begin();
         cout << "Set Name:" << mItr->getSetName() << endl;
-            for (mapItr; mapItr != mItr->getAppearanceMap().end(); mapItr++)
+            for (mapItr; mapItr != mItr->getSetMap().end(); mapItr++)
             {
                 cout << mapItr->first << ": " << mapItr->second << endl;
             }
@@ -150,4 +150,8 @@ void AppearanceSetManager::swap(AppearanceSet & newSet, AppearanceSet & oldSet)
     oldSet = newSet;
     newSet = temp;
 }
-*/
+
+void AppearanceSetManager::addToSet(const string & setName, const  string & key, const string & value)
+{
+	getSet(setName).addToSet(key, value);
+}

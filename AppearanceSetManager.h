@@ -3,42 +3,40 @@
 
 #include <vector>
 #include <iostream>
+#include "I_SetManager.h"
 #include "AppearanceSet.h"
-#include "SetManager.h"
+
 using namespace std;
 
-class AppearanceSetManager: virtual public SetManager
+class AppearanceSetManager: virtual public I_SetManager
 {
     public:
         AppearanceSetManager();
         virtual ~AppearanceSetManager();
 
-        virtual void createDefaultSet(void);
-        /*
-        virtual void addSet(AppearanceSet newSet);
-        virtual void printSet(const string & setName);
-        virtual void printAllSets(void);
-        virtual void printSetList(void);
-        virtual void swap(AppearanceSet & newSet, AppearanceSet & oldSet);
+		//AppearanceSetManager functions
+      	virtual void addSet(AppearanceSet & newSet);
+		virtual void setCurrent(AppearanceSet & set);
+		virtual void swap(AppearanceSet & newSet, AppearanceSet & oldSet);
+		virtual AppearanceSet & getCurrentSet(void);
+		virtual AppearanceSet & getDefaultSet(void);
+		virtual AppearanceSet & getSet(const string & setName);
+		virtual const vector<AppearanceSet> * getSetList(void);
+		virtual void addToSet(const string & setName, const string & key, const string & value);
+	
+		//Overloaded I_SetManager functions
+		virtual void createDefaultSet(void);
+		virtual void printSet(const string & setName);
+		virtual void printAllSets(void);
+		virtual void printSetList(void);
+		virtual void setCurrent(const string & setName);
 
-        //Setters
-        virtual void setCurrent(const string & setName);
-        virtual void setCurrent(AppearanceSet & set);
-
-
-        //Getters
-        virtual AppearanceSet & getCurrentSet(void);
-        virtual AppearanceSet & getDefaultSet(void);
-        virtual AppearanceSet & getSet(const string & setName);
-        virtual const vector<AppearanceSet> * getSetList(void);
-        */
     protected:
     private:
-        /*
         vector<AppearanceSet> mSetList;
         vector<AppearanceSet>::iterator mItr;
         AppearanceSet mDefaultSet;
-        */
+      
 };
 
 #endif // APPEARANCESETMANAGER_H

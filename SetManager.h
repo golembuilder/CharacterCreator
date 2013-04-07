@@ -28,12 +28,12 @@ class SetManager
         virtual const vector<Set> * getSetList(void);
 
     protected:
-        vector<Set> mSetList;
-        vector<Set>::iterator mItr;
-        Set mDefaultSet;
+        
 
     private:
-
+		Set mDefaultSet;
+		vector<Set> mSetList;
+		vector<Set>::iterator mItr;
 
 };
 

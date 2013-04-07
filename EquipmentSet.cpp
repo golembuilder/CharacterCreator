@@ -1,6 +1,6 @@
 #include "EquipmentSet.h"
 
-EquipmentSet::EquipmentSet(string setName) : Set(setName)
+EquipmentSet::EquipmentSet(string setName) : mSetName(setName)
 {
     //ctor
     cout << "Equipment Set created" << endl;
@@ -12,26 +12,43 @@ EquipmentSet::~EquipmentSet()
     cout << "Equipment Set destroyed" << endl;
 }
 
-/*
+EquipmentSet::EquipmentSet(const EquipmentSet & cSource)
+{
+	cout << "EquipmentSet copy constructor called" << endl;
+	mSetName = cSource.mSetName;
+	mSetMap = cSource.mSetMap;
+}
+
+EquipmentSet & EquipmentSet::operator=(const EquipmentSet & cSource)
+{
+	if (this == &cSource)
+		return *this;
+
+	cout << "EquipmentSet copy constructor called" << endl;
+	mSetName = cSource.mSetName;
+	mSetMap = cSource.mSetMap;
+}
+
 void EquipmentSet::addToSet(const string & key, const string & value)
 {
 
-    if (mEquipmentMap.count(key) > 0)      //Checking to see if the key exists
+    if (mSetMap.count(key) > 0)      //Checking to see if the key exists
     {
-       mEquipmentMap[key] = value;
+		mSetMap[key] = value;
     }
     else
     {
-       mEquipmentMap.insert(make_pair(key, value));
+		mSetMap.insert(make_pair(key, value));
     }
 
 }
 
-void EquipmentSet::removeFromSet(const string & key, const string & svalue)
+void EquipmentSet::removeFromSet(const string & key)
 {
-    if (mEquipmentMap.count(key) > 0)
-        mEquipmentMap.find(key)->second = "";
-    //else  launch an exception of some kind, or error message... value not there.
+    if (mSetMap.count(key) > 0)
+        mSetMap.erase(key);
+	else
+		throw key;
 }
 
 string & EquipmentSet::getSetName(void)
@@ -44,8 +61,8 @@ void EquipmentSet::setName(const string & newName)
     mSetName = newName;
 }
 
-map<string, string> & EquipmentSet::getEquipmentMap(void)
+map<string, string> & EquipmentSet::getSetMap(void)
 {
-    return mEquipmentMap;
+    return mSetMap;
 }
-*/
+

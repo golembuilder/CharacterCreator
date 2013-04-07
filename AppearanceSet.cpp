@@ -1,37 +1,56 @@
 #include "AppearanceSet.h"
 
-AppearanceSet::AppearanceSet(string setName) : Set(setName)
+AppearanceSet::AppearanceSet(string setName) : mSetName(setName)
 {
     //ctor
-    cout << "Appearance Set created" << endl;
+    cout << "Appearance Set Created" << endl;
+}
+
+AppearanceSet::AppearanceSet(const AppearanceSet & cSource)
+{
+    cout << "Appearance Set's Copy Constructor Called" << endl;
+    mSetName = cSource.mSetName;
+    mSetMap = cSource.mSetMap;
 }
 
 AppearanceSet::~AppearanceSet()
 {
     //dtor
-    cout << "Appearance Set destroyed" << endl;
+    cout << "Appearance Set Destroyed" << endl;
 }
 
-/*
+AppearanceSet & AppearanceSet::operator= (const AppearanceSet & cSource)
+{
+
+    if (this == &cSource)
+        return *this;
+
+    cout << "Appearance Set's Assignment Operator called" << endl;
+    mSetName = cSource.mSetName;
+    mSetMap = cSource.mSetMap;
+
+    return *this;
+}
+
 void AppearanceSet::addToSet(const string & key, const string & value)
 {
 
-    if (mAppearanceMap.count(key) > 0)      //Checking to see if the key exists
+    if (mSetMap.count(key) > 0)      //Checking to see if the key exists
     {
-        mAppearanceMap[key] = value;
+        mSetMap[key] = value;
     }
     else
     {
-        mAppearanceMap.insert(make_pair(key, value));
+        mSetMap.insert(make_pair(key, value));
     }
-
 }
 
-void AppearanceSet::removeFromSet(const string & key, const string & svalue)
+void AppearanceSet::removeFromSet(const string & key)
 {
     if (mSetMap.count(key) > 0)
-        mSetMap.find(key)->second = "";
-    //else  launch an exception of some kind, or error message... value not there.
+        mSetMap.erase(key);
+    else
+        throw key;
 }
 
 string & AppearanceSet::getSetName(void)
@@ -48,7 +67,3 @@ map<string, string> & AppearanceSet::getSetMap(void)
 {
     return mSetMap;
 }
-
-*/
-
-
