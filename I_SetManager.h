@@ -25,7 +25,8 @@ public:
 	I_SetManager(void);
 	virtual ~I_SetManager(void);
 	
-    virtual void createDefaultSet(void) = 0;
+    //virtual void createDefaultSet(void) = 0;
+	virtual void setDefault(const string & setName) = 0;
     virtual void printSet(const string & setName) = 0;
     virtual void printAllSets(void) = 0;
     virtual void printSetList(void) = 0;

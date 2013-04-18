@@ -23,9 +23,10 @@ class AppearanceSetManager: virtual public I_SetManager
 		virtual AppearanceSet & getSet(const string & setName);
 		virtual const vector<AppearanceSet> * getSetList(void);
 		virtual void addToSet(const string & setName, const string & key, const string & value);
-	
+		virtual AppearanceSet & createDefaultSet(void);
+		
 		//Overloaded I_SetManager functions
-		virtual void createDefaultSet(void);
+		virtual void setDefault(const string & setName);
 		virtual void printSet(const string & setName);
 		virtual void printAllSets(void);
 		virtual void printSetList(void);
@@ -35,7 +36,7 @@ class AppearanceSetManager: virtual public I_SetManager
     private:
         vector<AppearanceSet> mSetList;
         vector<AppearanceSet>::iterator mItr;
-        AppearanceSet mDefaultSet;
+        //AppearanceSet mDefaultSet;
       
 };
 

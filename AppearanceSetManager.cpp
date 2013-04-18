@@ -3,8 +3,8 @@
 AppearanceSetManager::AppearanceSetManager()
 {
     //ctor
-    createDefaultSet();
-    mSetList.push_back(mDefaultSet);
+    
+	mSetList.push_back(createDefaultSet());
     cout << "Appearance Set Manager Created" << endl;
 }
 
@@ -14,35 +14,40 @@ AppearanceSetManager::~AppearanceSetManager()
     cout << "Appearance Set Manager Destroyed" << endl;
 }
 
-void AppearanceSetManager::createDefaultSet(void)
+AppearanceSet & AppearanceSetManager::createDefaultSet(void)
 {   //Eventually I'll want to have these values set by a datafile or a database.  For now, it's all static.
     //I might have a simpler set up where you can just put in pairs of items with groupings (Hands, Shoulders, etc.)
     //I also might just shrink some of these things down a lot.
-    mDefaultSet.setName("default");
+    AppearanceSet * defaultSet = new AppearanceSet();
+	defaultSet->setName("default");
 
     //Create the map.
-    mDefaultSet.addToSet("hair", "hair01.mesh");
-    mDefaultSet.addToSet("hairColor", "brown");
-    mDefaultSet.addToSet("face", "face01.mesh");
-    mDefaultSet.addToSet("lEye", "lEye01.mesh");
-    mDefaultSet.addToSet("rEye", "rEye01.mesh");
-    mDefaultSet.addToSet("lEyeColor", "blue");
-    mDefaultSet.addToSet("rEyeColor", "yellow");
+    defaultSet->addToSet("hair", "hair01.mesh");
+    defaultSet->addToSet("hairColor", "brown");
+    defaultSet->addToSet("face", "face01.mesh");
+    defaultSet->addToSet("lEye", "lEye01.mesh");
+    defaultSet->addToSet("rEye", "rEye01.mesh");
+    defaultSet->addToSet("lEyeColor", "blue");
+    defaultSet->addToSet("rEyeColor", "yellow");
+
+	return *defaultSet;
+
+	delete(defaultSet);
+	defaultSet = 0;
 }
 
 void AppearanceSetManager::addSet(AppearanceSet & newSet)
-{
+{   cout << "Test: Add" << endl;
     try     //check to see if newSet is not contained in the set.
     {
         getSet( newSet.getSetName() );      //not sure I like this, but it works or now.
         cout << "Set: " << newSet.getSetName() << " already exists, set will not be added" << endl;
     }
     catch (bool flag)
-    {
+    {	
         mSetList.push_back(newSet);
         cout << "Added: "  << newSet.getSetName() << endl;      //testing
     }
-
 }
 
 AppearanceSet & AppearanceSetManager::getCurrentSet(void)
@@ -81,7 +86,10 @@ void AppearanceSetManager::setCurrent(AppearanceSet & set)
 
 AppearanceSet & AppearanceSetManager::getDefaultSet(void)
 {
-    return mDefaultSet;
+	if (mSetList[0].getSetName() == "default")
+		return mSetList[0];		//default set is the current set
+	else
+		return mSetList[1];		//some other set is the current set, so return the value in space 1
 }
 
 AppearanceSet & AppearanceSetManager::getSet(const string & setName)
@@ -154,4 +162,22 @@ void AppearanceSetManager::swap(AppearanceSet & newSet, AppearanceSet & oldSet)
 void AppearanceSetManager::addToSet(const string & setName, const  string & key, const string & value)
 {
 	getSet(setName).addToSet(key, value);
+}
+
+void AppearanceSetManager::setDefault(const string & setName)
+{
+	if (setName != "default")
+	{
+		try
+		{
+			swap(getSet(setName), mSetList[1]);
+			cout << setName << " is now the default set" << endl;
+		}
+		catch (bool flag)
+		{
+			cout << "Set: "  << setName << " is not in the list" << endl;      //testing
+		}
+	}	
+	else
+		cout << setName << " is already the default set." << endl;
 }

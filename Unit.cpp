@@ -43,14 +43,22 @@ EquipmentSetManager & Unit::getEquipmentSetManager(void)
     return mEquipmentSetMgr;
 }
 
+TitleSetManager & Unit::getTitleSetManager(void)
+{
+	return mTitleSetMgr;
+}
+
 void Unit::printUnitInfo(void)
 {
 	cout << getName() << endl;
 	cout << getUnitType() << endl;
+	cout << "Appearance Set:" << endl;
 	mAppearanceSetMgr.printSet(mAppearanceSetMgr.getCurrentSet().getSetName());
 	cout << endl;
-	mEquipmentSetMgr.printSet(mAppearanceSetMgr.getCurrentSet().getSetName());
+	cout << "Equipment Set:" << endl;
+	mEquipmentSetMgr.printSet(mEquipmentSetMgr.getCurrentSet().getSetName());
 	cout << endl;
-	mTitleSetMgr.printSet(mAppearanceSetMgr.getCurrentSet().getSetName());
+	cout << "Title Set:" << endl;
+	mTitleSetMgr.printSet(mTitleSetMgr.getCurrentSet().getSetName());
 	cout << endl;
 }

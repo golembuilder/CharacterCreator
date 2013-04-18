@@ -23,6 +23,7 @@ public:
 	virtual const string getUnitType(void);
 	virtual AppearanceSetManager & getAppearanceSetManager(void);
 	virtual EquipmentSetManager & getEquipmentSetManager(void);
+	virtual TitleSetManager & getTitleSetManager(void);
 
 	virtual void setName(const string & name);
 	virtual void setUnitType(const string & unitType);
