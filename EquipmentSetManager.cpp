@@ -4,8 +4,11 @@
 EquipmentSetManager::EquipmentSetManager()
 {
     //ctor
-    createDefaultSet();
-    mSetList.push_back(mDefaultSet);
+	mDefaultSet = mCurrentSet = NULL;
+
+    mSetList.push_back(*createDefaultSet());
+	mDefaultSet = mCurrentSet = &mSetList[0];	//pointing both sets to the default set
+
     cout << "Equipment Set Manager Created" << endl;
 
 }
@@ -16,39 +19,43 @@ EquipmentSetManager::~EquipmentSetManager()
     cout << "Equipment Set Manager Destroyed" << endl;
 }
 
-void EquipmentSetManager::createDefaultSet(void)
+EquipmentSet * EquipmentSetManager::createDefaultSet(void)
 {
-    mDefaultSet.setName("default");
+	mDefaultSet = new EquipmentSet();
+
+    mDefaultSet->setName("default");
 
     //Create the map.
-    mDefaultSet.addToSet("head", "helmet01.mesh");
-    mDefaultSet.addToSet("face", "mask01.mesh");
-    mDefaultSet.addToSet("neck", "collar01.mesh");
-    mDefaultSet.addToSet("neck", "collar01.mesh");
-    mDefaultSet.addToSet("lShoulder", "lPauldron01.mesh");
-    mDefaultSet.addToSet("rShoulder", "rPauldron01.mesh");
-    mDefaultSet.addToSet("lBicep", "lRerebrace01.mesh");
-    mDefaultSet.addToSet("rBicep", "rRearebrace01.mesh");
-    mDefaultSet.addToSet("lForearm", "lBracer01.mesh");
-    mDefaultSet.addToSet("rForearm", "rBracer01.mesh");
-    mDefaultSet.addToSet("lHand", "lGauntlet01.mesh");
-    mDefaultSet.addToSet("rHand", "rGauntlet01.mesh");
-    mDefaultSet.addToSet("lPinkie", "ring01.mesh");
-    mDefaultSet.addToSet("rPinkie", "ring01.mesh");
-    mDefaultSet.addToSet("lRing", "ring02.mesh");
-    mDefaultSet.addToSet("rRing", "ring02.mesh");
-    mDefaultSet.addToSet("lMiddle", "ring03.mesh");
-    mDefaultSet.addToSet("rMiddle", "ring03.mesh");
-    mDefaultSet.addToSet("lPointer", "ring04.mesh");
-    mDefaultSet.addToSet("rPointer", "ring04.mesh");
-    mDefaultSet.addToSet("chest", "chestPlate01.mesh");
-    mDefaultSet.addToSet("waist", "belt01.mesh");
-    mDefaultSet.addToSet("lThigh", "lCuisse01.mesh");
-    mDefaultSet.addToSet("rThigh", "rCuisee01.mesh");
-    mDefaultSet.addToSet("lShin", "lGreave01.mesh");
-    mDefaultSet.addToSet("rShin", "rGreave01.mesh");
-    mDefaultSet.addToSet("lFoot", "lBoot01.mesh");
-    mDefaultSet.addToSet("rFoot", "rBoot01.mesh");
+    mDefaultSet->addToSet("head", "helmet01.mesh");
+    mDefaultSet->addToSet("face", "mask01.mesh");
+    mDefaultSet->addToSet("neck", "collar01.mesh");
+    mDefaultSet->addToSet("neck", "collar01.mesh");
+    mDefaultSet->addToSet("lShoulder", "lPauldron01.mesh");
+    mDefaultSet->addToSet("rShoulder", "rPauldron01.mesh");
+    mDefaultSet->addToSet("lBicep", "lRerebrace01.mesh");
+    mDefaultSet->addToSet("rBicep", "rRearebrace01.mesh");
+    mDefaultSet->addToSet("lForearm", "lBracer01.mesh");
+    mDefaultSet->addToSet("rForearm", "rBracer01.mesh");
+    mDefaultSet->addToSet("lHand", "lGauntlet01.mesh");
+    mDefaultSet->addToSet("rHand", "rGauntlet01.mesh");
+    mDefaultSet->addToSet("lPinkie", "ring01.mesh");
+    mDefaultSet->addToSet("rPinkie", "ring01.mesh");
+    mDefaultSet->addToSet("lRing", "ring02.mesh");
+    mDefaultSet->addToSet("rRing", "ring02.mesh");
+    mDefaultSet->addToSet("lMiddle", "ring03.mesh");
+    mDefaultSet->addToSet("rMiddle", "ring03.mesh");
+    mDefaultSet->addToSet("lPointer", "ring04.mesh");
+    mDefaultSet->addToSet("rPointer", "ring04.mesh");
+    mDefaultSet->addToSet("chest", "chestPlate01.mesh");
+    mDefaultSet->addToSet("waist", "belt01.mesh");
+    mDefaultSet->addToSet("lThigh", "lCuisse01.mesh");
+    mDefaultSet->addToSet("rThigh", "rCuisee01.mesh");
+    mDefaultSet->addToSet("lShin", "lGreave01.mesh");
+    mDefaultSet->addToSet("rShin", "rGreave01.mesh");
+    mDefaultSet->addToSet("lFoot", "lBoot01.mesh");
+    mDefaultSet->addToSet("rFoot", "rBoot01.mesh");
+
+	return mDefaultSet;
 }
 
 void EquipmentSetManager::addSet(EquipmentSet & newSet)
@@ -56,16 +63,16 @@ void EquipmentSetManager::addSet(EquipmentSet & newSet)
 	mSetList.push_back(newSet);
 }
 
-EquipmentSet & EquipmentSetManager::getCurrentSet(void)
+EquipmentSet * EquipmentSetManager::getCurrentSet(void)
 {
-    return mSetList[0];
+    return mCurrentSet;
 }
 
-void EquipmentSetManager::setCurrent(const string & setName)
+void EquipmentSetManager::setAsCurrent(const string & setName)
 {
     try
     {
-        swap(getSet(setName), mSetList[0]);
+		mCurrentSet = &getSet(setName);
         cout << "Set Name: "  << setName << " was found in the set list, it is now the current set" << endl;      //testing
     }
     catch (bool flag)
@@ -74,23 +81,22 @@ void EquipmentSetManager::setCurrent(const string & setName)
     }
 }
 
-void EquipmentSetManager::setCurrent(EquipmentSet & set)
+void EquipmentSetManager::setAsCurrent(EquipmentSet & set)
 {
-    //This is a little confusing:
-    //check getSet(), if 'set' is not in the list, a bool flag of false is thrown in getSet() and caught here.
     try     //check to see if newSet is not contained in the set.
     {
-        swap( getSet(set.getSetName()), mSetList[0] );
+		mCurrentSet = &getSet(set.getSetName());
         cout << "Set: "  << set.getSetName() << " was found in the set list, it is now the current set" << endl;      //testing
     }
     catch (bool flag)
     {
-        swap(set, mSetList[0]);
+        mSetList.push_back(set);
+		mCurrentSet = &getSet(set.getSetName());
         cout << "Set: "  << set.getSetName() << " is now the current set" << endl;      //testing
     }
 }
 
-EquipmentSet & EquipmentSetManager::getDefaultSet(void)
+EquipmentSet * EquipmentSetManager::getDefaultSet(void)
 {
     return mDefaultSet;
 }
@@ -108,9 +114,9 @@ EquipmentSet & EquipmentSetManager::getSet(const string & setName)
     throw false;        //set not found in the list
 }
 
-const vector<EquipmentSet> * EquipmentSetManager::getSetList(void)
+vector<EquipmentSet> & EquipmentSetManager::getSetList(void)
 {
-    return &mSetList;
+    return mSetList;
 }
 
 void EquipmentSetManager::printSet(const string & setName)
@@ -184,5 +190,23 @@ void EquipmentSetManager::removeFromSet(const string & setName, const string & k
 	{
 		cout << setName << " was not found in the set." << endl;
 	}
+}
+
+void EquipmentSetManager::setAsDefault(const string & setName)
+{
+	if (mDefaultSet->getSetName() != setName)
+	{
+		try
+		{
+			mDefaultSet = &getSet(setName);
+			cout << setName << " is now the default set" << endl;
+		}
+		catch (bool flag)
+		{
+			cout << "Set: "  << setName << " is not in the list" << endl;      //testing
+		}
+	}	
+	else
+		cout << setName << " is already the default set." << endl;
 }
 

@@ -3,8 +3,11 @@
 
 TitleSetManager::TitleSetManager(void)
 {
-	createDefaultSet();
-	mSetList.push_back(mDefaultSet);
+	mDefaultSet = mCurrentSet = NULL;
+
+	mSetList.push_back(*createDefaultSet());
+	mDefaultSet = mCurrentSet = &mSetList[0];
+
 	cout << "Title Set Manager Created" << endl;
 }
 
@@ -14,11 +17,14 @@ TitleSetManager::~TitleSetManager(void)
 	cout << "Title Set Manager Destroyed" << endl;
 }
 
-void TitleSetManager::createDefaultSet(void)
+TitleSet * TitleSetManager::createDefaultSet(void)
 {	
-	mDefaultSet.setName("default");
-	mDefaultSet.addToSet("Commoner");
-	
+	mDefaultSet = new TitleSet();
+
+	mDefaultSet->setName("default");
+	mDefaultSet->addToSet("Commoner");
+
+	return mDefaultSet;	
 }
 
 void TitleSetManager::addSet(TitleSet & newSet)
@@ -36,16 +42,16 @@ void TitleSetManager::addSet(TitleSet & newSet)
 
 }
 
-TitleSet & TitleSetManager::getCurrentSet(void)
+TitleSet * TitleSetManager::getCurrentSet(void)
 {
-    return mSetList[0];
+    return mCurrentSet;
 }
 
-void TitleSetManager::setCurrent(const string & setName)
+void TitleSetManager::setAsCurrent(const string & setName)
 {
     try
     {
-        swap(getSet(setName), mSetList[0]);
+		mCurrentSet = &getSet(setName);
         cout << "Set Name: "  << setName << " was found in the set list, it is now the current set" << endl;      //testing
     }
     catch (bool flag)
@@ -54,23 +60,40 @@ void TitleSetManager::setCurrent(const string & setName)
     }
 }
 
-void TitleSetManager::setCurrent(TitleSet & set)
+void TitleSetManager::setAsCurrent(TitleSet & set)
 {
-    //This is a little confusing:
-    //check getSet(), if 'set' is not in the list, a bool flag of false is thrown in getSet() and caught here.
     try     //check to see if newSet is not contained in the set.
     {
-        swap( getSet(set.getSetName()), mSetList[0] );
+        mCurrentSet = &getSet(set.getSetName());
         cout << "Set: "  << set.getSetName() << " was found in the set list, it is now the current set" << endl;      //testing
     }
     catch (bool flag)
     {
-        swap(set, mSetList[0]);
+        mSetList.push_back(set);
+		mCurrentSet = &getSet(set.getSetName());
         cout << "Set: "  << set.getSetName() << " is now the current set" << endl;      //testing
     }
 }
 
-TitleSet & TitleSetManager::getDefaultSet(void)
+void TitleSetManager::setAsDefault(const string & setName)
+{
+	if (mDefaultSet->getSetName() != setName)
+	{
+		try
+		{
+			mDefaultSet = &getSet(setName);
+			cout << setName << " is now the default set" << endl;
+		}
+		catch (bool flag)
+		{
+			cout << "Set: "  << setName << " is not in the list" << endl;      //testing
+		}
+	}	
+	else
+		cout << setName << " is already the default set." << endl;
+}
+
+TitleSet * TitleSetManager::getDefaultSet(void)
 {
     return mDefaultSet;
 }
@@ -88,9 +111,9 @@ TitleSet & TitleSetManager::getSet(const string & setName)
     throw false;        //set not found in the list
 }
 
-const vector<TitleSet> * TitleSetManager::getSetList(void)
+vector<TitleSet> & TitleSetManager::getSetList(void)
 {
-    return &mSetList;
+    return mSetList;
 }
 
 void TitleSetManager::printSet(const string & setName)
@@ -172,3 +195,4 @@ void TitleSetManager::removeFromSet(const string & setName, const string & value
 		cout << setName << " was not found in the set. " << endl;
 	}
 }
+

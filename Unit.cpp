@@ -53,12 +53,12 @@ void Unit::printUnitInfo(void)
 	cout << getName() << endl;
 	cout << getUnitType() << endl;
 	cout << "Appearance Set:" << endl;
-	mAppearanceSetMgr.printSet(mAppearanceSetMgr.getCurrentSet().getSetName());
+	mAppearanceSetMgr.printSet(mAppearanceSetMgr.getCurrentSet()->getSetName());
 	cout << endl;
 	cout << "Equipment Set:" << endl;
-	mEquipmentSetMgr.printSet(mEquipmentSetMgr.getCurrentSet().getSetName());
+	mEquipmentSetMgr.printSet(mEquipmentSetMgr.getCurrentSet()->getSetName());
 	cout << endl;
 	cout << "Title Set:" << endl;
-	mTitleSetMgr.printSet(mTitleSetMgr.getCurrentSet().getSetName());
+	mTitleSetMgr.printSet(mTitleSetMgr.getCurrentSet()->getSetName());
 	cout << endl;
 }

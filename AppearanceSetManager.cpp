@@ -3,8 +3,12 @@
 AppearanceSetManager::AppearanceSetManager()
 {
     //ctor
-    
-	mSetList.push_back(createDefaultSet());
+	mDefaultSet = mCurrentSet = NULL;	//initilizing both pointers to null
+
+	
+    mSetList.push_back(*createDefaultSet());
+	mDefaultSet = mCurrentSet = &mSetList[0];	//setting the pointers to the first set in the list
+
     cout << "Appearance Set Manager Created" << endl;
 }
 
@@ -14,26 +18,24 @@ AppearanceSetManager::~AppearanceSetManager()
     cout << "Appearance Set Manager Destroyed" << endl;
 }
 
-AppearanceSet & AppearanceSetManager::createDefaultSet(void)
+AppearanceSet * AppearanceSetManager::createDefaultSet(void)
 {   //Eventually I'll want to have these values set by a datafile or a database.  For now, it's all static.
     //I might have a simpler set up where you can just put in pairs of items with groupings (Hands, Shoulders, etc.)
     //I also might just shrink some of these things down a lot.
-    AppearanceSet * defaultSet = new AppearanceSet();
-	defaultSet->setName("default");
+
+	mDefaultSet = new AppearanceSet();
+    mDefaultSet->setName("default");
 
     //Create the map.
-    defaultSet->addToSet("hair", "hair01.mesh");
-    defaultSet->addToSet("hairColor", "brown");
-    defaultSet->addToSet("face", "face01.mesh");
-    defaultSet->addToSet("lEye", "lEye01.mesh");
-    defaultSet->addToSet("rEye", "rEye01.mesh");
-    defaultSet->addToSet("lEyeColor", "blue");
-    defaultSet->addToSet("rEyeColor", "yellow");
+    mDefaultSet->addToSet("hair", "hair01.mesh");
+    mDefaultSet->addToSet("hairColor", "brown");
+    mDefaultSet->addToSet("face", "face01.mesh");
+    mDefaultSet->addToSet("lEye", "lEye01.mesh");
+    mDefaultSet->addToSet("rEye", "rEye01.mesh");
+    mDefaultSet->addToSet("lEyeColor", "blue");
+    mDefaultSet->addToSet("rEyeColor", "yellow");
 
-	return *defaultSet;
-
-	delete(defaultSet);
-	defaultSet = 0;
+	return mDefaultSet;
 }
 
 void AppearanceSetManager::addSet(AppearanceSet & newSet)
@@ -50,46 +52,44 @@ void AppearanceSetManager::addSet(AppearanceSet & newSet)
     }
 }
 
-AppearanceSet & AppearanceSetManager::getCurrentSet(void)
+AppearanceSet * AppearanceSetManager::getCurrentSet(void)
 {
-    return mSetList[0];
+    return mCurrentSet;
 }
 
-void AppearanceSetManager::setCurrent(const string & setName)
+void AppearanceSetManager::setAsCurrent(const string & setName)
 {
     try
     {
-        swap(getSet(setName), mSetList[0]);
+        mCurrentSet = &getSet(setName);
         cout << "Set Name: "  << setName << " was found in the set list, it is now the current set" << endl;      //testing
     }
     catch (bool flag)
     {
-        cout << "Set: "  << setName << " was not found!" << endl;      //testing
+        cout << "Set: "  << setName << " was not found in the set list!" << endl;      //testing
     }
 }
 
-void AppearanceSetManager::setCurrent(AppearanceSet & set)
+void AppearanceSetManager::setAsCurrent(AppearanceSet & set)
 {
-    //This is a little confusing:
-    //check getSet(), if 'set' is not in the list, a bool flag of false is thrown in getSet() and caught here.
-    try     //check to see if newSet is not contained in the set.
+   
+    try   //check to see if newSet is not contained in the set.
     {
-        swap( getSet(set.getSetName()), mSetList[0] );
+
+        mCurrentSet = &getSet(set.getSetName());
         cout << "Set: "  << set.getSetName() << " was found in the set list, it is now the current set" << endl;      //testing
     }
     catch (bool flag)
     {
-        swap(set, mSetList[0]);
-        cout << "Set: "  << set.getSetName() << " is now the current set" << endl;      //testing
+        mSetList.push_back(set);
+		mCurrentSet = &getSet(set.getSetName());
+        cout << "Set: "  << set.getSetName() << "has been added to the set list, and is now the current set" << endl;      //testing
     }
 }
 
-AppearanceSet & AppearanceSetManager::getDefaultSet(void)
+AppearanceSet * AppearanceSetManager::getDefaultSet(void)
 {
-	if (mSetList[0].getSetName() == "default")
-		return mSetList[0];		//default set is the current set
-	else
-		return mSetList[1];		//some other set is the current set, so return the value in space 1
+	return mDefaultSet;
 }
 
 AppearanceSet & AppearanceSetManager::getSet(const string & setName)
@@ -105,9 +105,9 @@ AppearanceSet & AppearanceSetManager::getSet(const string & setName)
     throw false;        //set not found in the list
 }
 
-const vector<AppearanceSet> * AppearanceSetManager::getSetList(void)
+vector<AppearanceSet> & AppearanceSetManager::getSetList(void)
 {
-    return &mSetList;
+    return mSetList;
 }
 
 void AppearanceSetManager::printSet(const string & setName)
@@ -164,13 +164,25 @@ void AppearanceSetManager::addToSet(const string & setName, const  string & key,
 	getSet(setName).addToSet(key, value);
 }
 
-void AppearanceSetManager::setDefault(const string & setName)
+void AppearanceSetManager::removeFromSet(const string & setName, const string & key)
 {
-	if (setName != "default")
+	try
+	{
+		getSet(setName).removeFromSet(key);
+	}
+	catch (bool)
+	{
+		cout << setName << " was not found in the set." << endl;
+	}
+}
+
+void AppearanceSetManager::setAsDefault(const string & setName)
+{
+	if (mDefaultSet->getSetName() != setName)
 	{
 		try
 		{
-			swap(getSet(setName), mSetList[1]);
+			mDefaultSet = &getSet(setName);
 			cout << setName << " is now the default set" << endl;
 		}
 		catch (bool flag)

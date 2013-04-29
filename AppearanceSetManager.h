@@ -16,27 +16,29 @@ class AppearanceSetManager: virtual public I_SetManager
 
 		//AppearanceSetManager functions
       	virtual void addSet(AppearanceSet & newSet);
-		virtual void setCurrent(AppearanceSet & set);
+		virtual void setAsCurrent(AppearanceSet & set);
 		virtual void swap(AppearanceSet & newSet, AppearanceSet & oldSet);
-		virtual AppearanceSet & getCurrentSet(void);
-		virtual AppearanceSet & getDefaultSet(void);
+		virtual AppearanceSet * getCurrentSet(void);
+		virtual AppearanceSet * getDefaultSet(void);
 		virtual AppearanceSet & getSet(const string & setName);
-		virtual const vector<AppearanceSet> * getSetList(void);
+		virtual vector<AppearanceSet> & getSetList(void);
 		virtual void addToSet(const string & setName, const string & key, const string & value);
-		virtual AppearanceSet & createDefaultSet(void);
+		virtual void removeFromSet(const string & setName, const string & key);
+		virtual AppearanceSet * createDefaultSet(void);
 		
 		//Overloaded I_SetManager functions
-		virtual void setDefault(const string & setName);
+		virtual void setAsDefault(const string & setName);
 		virtual void printSet(const string & setName);
 		virtual void printAllSets(void);
 		virtual void printSetList(void);
-		virtual void setCurrent(const string & setName);
+		virtual void setAsCurrent(const string & setName);
 
     protected:
     private:
         vector<AppearanceSet> mSetList;
         vector<AppearanceSet>::iterator mItr;
-        //AppearanceSet mDefaultSet;
+        AppearanceSet * mDefaultSet;
+		AppearanceSet * mCurrentSet;
       
 };
 
