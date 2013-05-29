@@ -25,8 +25,8 @@ AppearanceSet & AppearanceSet::operator= (const AppearanceSet & cSource)
 	
     cout << "Appearance Set's Assignment Operator called" << endl;
 	/*
-    mSetName = cSource.getSetName();
-    mSetMap = cSource.getSetMap();
+	changeName(cSource.getSetName());
+    changeMap(cSource.getSetMap());
 	*/
     return *this;
 	

@@ -4,11 +4,11 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "I_Set.h"
+#include "SetVector.h"
 
 using namespace std;
 
-class TitleSet : public I_Set
+class TitleSet : public SetVector
 {
 public:
 	TitleSet(string setName = "");
@@ -16,20 +16,11 @@ public:
 	TitleSet & operator= (const TitleSet & cSource);
 	virtual ~TitleSet(void);
 
-	//TitleSet functions
-    virtual void addToSet(const string &  value);
-    virtual void removeFromSet(const string & value);
-	virtual vector<string> & getSet(void);
 	
-	//overloaded functions from I_SET
-	virtual string & getSetName(void);
-    virtual void changeName(const string & newName);
         
     protected:
     private:
-		string mSetName;
-		vector<string> mSet;
-        vector<string>::iterator mItr;
+	
 };
 
 #endif //End TITLESET_H

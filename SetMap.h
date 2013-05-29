@@ -26,11 +26,11 @@ class SetMap : I_Set
     protected:
 	
 
+		
+    private:
 		string mSetName;
         map<string, string> mSetMap;
         map<string, string>::iterator mItr;
-    private:
-		
 
         
 };

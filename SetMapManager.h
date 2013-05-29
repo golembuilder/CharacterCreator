@@ -12,7 +12,7 @@ using namespace std;
 class SetMapManager
 {
     public:
-        SetMapManager();
+		SetMapManager();
         virtual ~SetMapManager();
 
 		//SetMapManager functions
@@ -36,6 +36,8 @@ class SetMapManager
 		virtual void setAsCurrent(const string & setName);
 
     protected:
+		
+
 		
     private:
 		vector<SetMap> mSetList;

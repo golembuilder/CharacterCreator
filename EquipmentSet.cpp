@@ -21,7 +21,7 @@ EquipmentSet & EquipmentSet::operator= (const EquipmentSet & cSource)
 {
 	if (this == &cSource)
 		return *this;
-	
+
 	cout << "EquipmentSet copy constructor called" << endl;
 	/*
 	mSetName = cSource.mSetName;
