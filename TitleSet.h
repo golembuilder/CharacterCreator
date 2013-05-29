@@ -23,7 +23,7 @@ public:
 	
 	//overloaded functions from I_SET
 	virtual string & getSetName(void);
-    virtual void setName(const string & newName);
+    virtual void changeName(const string & newName);
         
     protected:
     private:

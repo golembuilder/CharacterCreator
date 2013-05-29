@@ -74,7 +74,7 @@ string & TitleSet::getSetName(void)
     return mSetName;
 }
 
-void TitleSet::setName(const string & newName)
+void TitleSet::changeName(const string & newName)
 {
     mSetName = newName;
 }

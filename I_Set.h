@@ -13,7 +13,7 @@ public:
 	virtual ~I_Set(void);
 
     virtual string & getSetName(void)= 0;
-    virtual void setName(const string & newName)= 0;
+    virtual void changeName(const string & newName)= 0;
 };
 
 #endif // End I_SET_H

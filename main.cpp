@@ -17,6 +17,10 @@ int main()
     cout << "------------------" << endl;
     
     mUnit->getAppearanceSetManager().printAllSets();
+	mUnit->getEquipmentSetManager().printAllSets();
+	mUnit->getTitleSetManager().printAllSets();
+
+	cout << "-------------------" << endl;
 	mUnit->printUnitInfo();
 	
 	

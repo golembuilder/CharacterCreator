@@ -21,7 +21,7 @@ TitleSet * TitleSetManager::createDefaultSet(void)
 {	
 	mDefaultSet = new TitleSet();
 
-	mDefaultSet->setName("default");
+	mDefaultSet->changeName("default");
 	mDefaultSet->addToSet("Commoner");
 
 	return mDefaultSet;	
