@@ -3,18 +3,18 @@
 
 SetVector::SetVector(string setName) : mSetName(setName)
 {
-	cout << "Title Set created" << endl;
+	cout << "SetVector created" << endl;
 }
 
 
 SetVector::~SetVector(void)
 {
-	cout << "Title Set destroyed" << endl;
+	cout << "SetVector destroyed" << endl;
 }
 
 SetVector::SetVector(const SetVector & cSource)
 {
-    cout << "Title Set's Copy Constructor Called" << endl;
+    cout << "SetVector's Copy Constructor Called" << endl;
     mSetName = cSource.mSetName;
     mSet = cSource.mSet;
 }
@@ -25,7 +25,7 @@ SetVector & SetVector::operator= (const SetVector & cSource)
     if (this == &cSource)
         return *this;
 
-    cout << "Title Set's Assignment Operator called" << endl;
+    cout << "SetVector's Assignment Operator called" << endl;
     mSetName = cSource.mSetName;
     mSet = cSource.mSet;
 

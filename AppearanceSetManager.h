@@ -1,8 +1,6 @@
 #ifndef APPEARANCESETMANAGER_H
 #define APPEARANCESETMANAGER_H
 
-#include <vector>
-#include <iostream>
 #include "SetMapManager.h"
 #include "AppearanceSet.h"
 
@@ -15,7 +13,7 @@ class AppearanceSetManager: virtual public SetMapManager
         virtual ~AppearanceSetManager();
 
 		//AppearanceSetManager functions
-    	virtual SetMap * createDefaultSet(void);
+    	virtual SetMap * createDefaultSet(void); 
 		
 
 
