@@ -83,3 +83,15 @@ vector<string> & SetVector::getSet(void)
 {
     return mSet;
 }
+
+bool SetVector::find(const string & value)
+{
+	mItr = mSet.begin();
+	for (mItr; mItr != mSet.end(); mItr++)
+	{
+		if (*mItr == value)
+			return true;
+	}
+	
+	return false;		//if value is not found in the list, return false
+}

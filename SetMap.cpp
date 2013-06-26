@@ -73,3 +73,10 @@ void SetMap::changeMap(const map<string, string> & newMap)
 	mSetMap = newMap;
 }
 
+bool SetMap::find(const string & key)
+{
+	if (mSetMap.count(key) > 0)
+		return true;
+	else
+		return false;
+}

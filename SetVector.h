@@ -19,6 +19,7 @@ public:
     virtual void addToSet(const string &  value);
     virtual void removeFromSet(const string & value);
 	virtual vector<string> & getSet(void);
+	virtual bool find(const string & value);
 	
 	//overloaded functions from I_SET
 	virtual string & getSetName(void);

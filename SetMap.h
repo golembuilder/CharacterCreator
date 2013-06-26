@@ -22,6 +22,7 @@ class SetMap : I_Set
         virtual string & getSetName(void);
         virtual void changeName(const string & newName);
 		virtual void changeMap(const map<string, string> & newMap);
+		virtual bool find(const string & key);
         
     protected:
 	
