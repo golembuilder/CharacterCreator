@@ -28,17 +28,13 @@ SetVector * SetVectorManager::createDefaultSet(void)
 
 void SetVectorManager::addSet(SetVector & newSet)
 {
-    try     //check to see if newSet is not contained in the set.
-    {
-        getSet( newSet.getSetName() );      //not sure I like this, but it works or now.
-        cout << "Set: " << newSet.getSetName() << " already exists, set will not be added" << endl;
-    }
-    catch (bool flag)
-    {
-        mSetList.push_back(newSet);
-        cout << "Added: "  << newSet.getSetName() << endl;      //testing
-    }
-
+        if ( find(newSet.getSetName()) == true)
+			cout << "Set: " << newSet.getSetName() << " already exists in the set list, set will not be added" << endl;
+		else
+		{
+			mSetList.push_back(newSet);
+			cout << "Added: "  << newSet.getSetName() << endl;      //testing
+		}
 }
 
 SetVector * SetVectorManager::getCurrentSet(void)
@@ -61,17 +57,18 @@ void SetVectorManager::setAsCurrent(const string & setName)
 
 void SetVectorManager::setAsCurrent(SetVector & set)
 {
-    try     //check to see if newSet is not contained in the set.
-    {
-        mCurrentSet = &getSet(set.getSetName());
-        cout << "Set: "  << set.getSetName() << " was found in the set list, it is now the current set" << endl;      //testing
-    }
-    catch (bool flag)
-    {
-        mSetList.push_back(set);
-		mCurrentSet = &getSet(set.getSetName());
-        cout << "Set: "  << set.getSetName() << " is now the current set" << endl;      //testing
-    }
+		if ( find(set.getSetName()) == true )
+		{
+			mCurrentSet = &getSet(set.getSetName());
+			cout << "Set: "  << set.getSetName() << " was found in the set list, it is now the current set" << endl;      //testing
+		}
+		else
+		{
+			//add the new set to the list, and set it as the current set.  
+			mSetList.push_back(set);
+			mCurrentSet = &getSet(set.getSetName());
+			cout << "Set: "  << set.getSetName() << " is now the current set" << endl;      //testing
+		}
 }
 
 void SetVectorManager::setAsDefault(const string & setName)
@@ -195,3 +192,13 @@ void SetVectorManager::removeFromSet(const string & setName, const string & valu
 	}
 }
 
+bool SetVectorManager::find(const string & setName)
+{
+	mItr = mSetList.begin();
+	
+	for (mItr; mItr != mSetList.end(); mItr++)
+		if (mItr->getSetName() == setName)
+			return true;
+
+	return false;	//not found in the list
+}

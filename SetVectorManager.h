@@ -30,6 +30,7 @@ public:
 		virtual void printAllSets(void);
 		virtual void printSetList(void);
 		virtual void setAsCurrent(const string & setName);
+		virtual bool find(const string & setName);
 
 	private:
 		vector<SetVector> mSetList;
